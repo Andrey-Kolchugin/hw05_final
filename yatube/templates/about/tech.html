@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Технологии{% endblock %}
+{% block content %}
+{% load static %}
+<div class="row">
+  <h1>Вот что я умею</h1> 
+  <br><br><br>
+    <img src="{% static 'img/scale_720.jpg' %}" width="360" height="480" >
+    <br><br><br>
+    <aside class="col-12 col-md-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <img src="{% static 'img/python_logo.png' %}" width="45" height="30" >
+          Python
+        </li>
+        <li class="list-group-item">
+          <img src="{% static 'img/dj.png' %}" width="45" height="30" >
+          Django
+        </li>
+        <li class="list-group-item">
+          <img src="{% static 'img/vscode_logo.png' %}" width="45" height="30" >
+          MS Visual Studio Code
+        </li>  
+      </ul>
+    </aside>
+    <article class="col-12 col-md-9">
+    <p><br>Этот сайт создавался на более чем скромном ноутбуке, под очень крепкий кофе
+      в кафе моего города. В работе очень помогли Яндекс.Музыка, MS VScode, студенческие
+      каналы слака и ТГ. Сложноватыми темами стали декораторы и валидаторы. Для более 
+      глубокого понимая этих тем в VScode писал с нуля простейшие функции, которые 
+      затем обрастали нужным функционалом. Также в проекте, если какая то фича не хотела 
+      работать, ставил код в комментарии #, а затем практически построчно снимал #,
+      правил ошибки и проверял работоспособность
+    </p>
+  </article>
+</div>
+{% endblock %}

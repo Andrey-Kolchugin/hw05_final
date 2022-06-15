@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<h1 class="container ">Привет, я автор</h1>
+<p>
+  <img src="{% static 'img/kat.png' %}" width="480" height="480" >
+  <article class="card-text">
+    <div class="container">  
+      Рад, что ты оказался на этой страничке!
+      <br> <br>
+      Раньше мне казалось, что разработка - это сплошь математика
+      и скучные однотипные задачи. И насколько меня обрадовало, 
+      что я ошибся  - это очень творческое занятие. Как художник работает кистью,
+      программист рисует цифрами. Бывает сложно, бывает грустно, но радость от результата 
+      всегда превыше любых сложностей.
+    </div>
+    <div class="container">
+      <br>
+        <br>
+          <b>
+            <h6>О себе:</h6>
+          </b>
+      <br>
+        <b>Имя: </b>Кольчугин Андрей
+      <br>
+        <b>Возраст:</b> 33 года 
+      <br>
+        <b>Местоположение: </b> Пенза г., Российская Федерация
+      <br>
+        <b>Аккаунт на GitHub:</b>
+        <a href="https://github.com/Andrey-Kolchugin">
+        <img src="{% static 'img/github.png' %}" width="45" height="45">
+      </a>
+    </div>
+  </article>  
+</p>
+{% endblock %} 
