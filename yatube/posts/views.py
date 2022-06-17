@@ -34,11 +34,10 @@ def group_posts(request, slug):
 def profile(request, username):
     current_author = get_object_or_404(User, username=username)
     posts = current_author.posts.all()
-    following = False
-    if request.user.is_authenticated:
-        following = Follow.objects.filter(
-            user=request.user,
-            author=current_author).exists()
+    following = (request.user.is_authenticated and Follow.objects.filter(
+        user=request.user,
+        author=current_author).exists()
+    )
     page_obj = paginate(request, posts, NUMBER_OF_POSTS)
     context = {
         'author': current_author,
@@ -114,10 +113,8 @@ def add_comment(request, post_id):
 
 @login_required
 def follow_index(request):
-    user = Follow.objects.filter(user=request.user).select_related('author')
-    following_list = User.objects.filter(following__in=user)
     posts = (
-        Post.objects.filter(author__in=following_list)
+        Post.objects.filter(author__following__user=request.user)
         .select_related('author', 'group')
     )
     page_obj = paginate(request, posts, NUMBER_OF_POSTS)
@@ -146,6 +143,5 @@ def profile_follow(request, username):
 @login_required
 def profile_unfollow(request, username):
     user = User.objects.get(username=username)
-    following = Follow.objects.filter(user=request.user, author=user)
-    following.delete()
+    Follow.objects.filter(user=request.user, author=user).delete()
     return redirect('posts:profile', username)

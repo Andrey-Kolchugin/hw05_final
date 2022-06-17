@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from django.test import Client, TestCase
 
 
@@ -15,7 +16,7 @@ class StaticURLTests(TestCase):
         for address in self.urls_and_templates_dict.keys():
             with self.subTest(address=address):
                 response = self.guest_client.get(address)
-                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_about_url_uses_correct_template(self):
         """Проверка шаблона для адресов /about/."""
