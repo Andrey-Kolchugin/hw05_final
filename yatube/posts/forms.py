@@ -13,3 +13,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text',)
+
+
+class SearchForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('text',)

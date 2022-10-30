@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+{% load user_filters %}
 {% block title %}Последние обновления на сайте{% endblock %}
 {% block content %}
+<form method="post" action="{% url 'posts:index' %}">
+  {% csrf_token %}
+  <div class="form-group mb-2">
+    {{ form.text|addclass:"form-control" }}
+  </div>
+  <button type="submit" class="btn btn-primary">Поиск</button>
+</form>
   <h1>Последние обновления на сайте!</h1>
+
   {% include 'posts/includes/switcher.html' %}
     {% for post in page_obj %}
     <article>
       <ul>
         <li>
-          Автор: {{ post.author.get_full_name }}
+          Автор: <a href="{% url 'posts:profile' post.author%}"> {{ post.author }} <a/>
         </li>
         <li>
           Дата публикации: {{ post.pub_date|date:"d E Y" }}

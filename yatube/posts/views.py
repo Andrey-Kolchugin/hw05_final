@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, SearchForm
 from .models import Comment, Follow, Group, Post, User
 from .utils import paginate
 
@@ -14,8 +14,10 @@ INDEX_CACHE_TIME = 20
 def index(request):
     posts = Post.objects.select_related('author', 'group')
     page_obj = paginate(request, posts, NUMBER_OF_POSTS)
+    form = SearchForm
     context = {
         'page_obj': page_obj,
+        'form': form
     }
     return render(request, 'posts/index.html', context)
 
